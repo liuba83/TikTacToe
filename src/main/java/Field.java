@@ -27,14 +27,77 @@ public class Field {
     }
 
     public boolean isAvailableCell (int x, int y) {
-            if (field[x][y] == 'X' || field[x][y] == 'O')
-                return false;
+            return (field[x][y] == 'X' || field[x][y] == 'O');
 
-            else
-                return true;
     }
 
-    private boolean isHorizontalWin (char player) {
-            
+    private boolean isHorizontalWin () {
+            boolean isWin = false;
+
+            for (int i = 0; i < field.length; i++) {
+                isWin = true;
+              for (int j = 0; j < field[i].length-1; j++) {
+                  if (field[i][j] != field[i][j+1]) {
+                      isWin = false;
+                      break;
+                  }
+              }
+              if (isWin)
+                  break;
+        }
+
+            return isWin;
+    }
+
+    private boolean isVerticalWin () {
+            boolean isWin = false;
+
+            for (int i = 0; i < field.length; i++) {
+                isWin = true;
+                for(int j = 0; j < field[i].length-1; j++) {
+                    if (field[j][i] != field[j+1][i]) {
+                        isWin = false;
+                        break;
+                    }
+                }
+                if(isWin)
+                    break;
+            }
+            return isWin;
+    }
+
+    private boolean isDiagonalLeftWin () {
+            boolean isWin = true;
+
+            for (int i = 0; i < field.length-1; i++) {
+                if (field[i][i] != field[i+1][i+1]) {
+                    isWin = false;
+                    break;
+                }
+            }
+            return isWin;
+    }
+
+    private boolean isDiagonalRightWin () {
+            boolean isWin = true;
+
+            int j = field.length-1;
+
+            for (int i = 0; i < field.length-1; i++) {
+                if (field[i][j] != field[i+1][j-1]) {
+                  isWin = false;
+                  break;
+                }
+            }
+            return isWin;
+    }
+
+    public boolean fillCell (int x, int y, char symbol) {
+            if (isAvailableCell(x, y)) {
+                field[x][y] = symbol;
+                return true;
+            }
+            else
+                return false;
     }
 }
