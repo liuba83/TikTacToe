@@ -11,7 +11,7 @@ public class Field {
 
             for (int i = 0; i < field.length; i++) {
                 for (int j = 0; j < field[i].length; j++){
-                   field[i][j] = (char) count;
+                   field[i][j] = (char) (count + '0');
                    count++;
                 }
             }
@@ -20,7 +20,7 @@ public class Field {
     public void displayField() {
           for (int i = 0; i < field.length; i++ ) {
               for (int j = 0; j < field[i].length; j++) {
-                  System.out.print(" " + field[i][j]);
+                  System.out.print(field[i][j] + " ");
               }
               System.out.println();
           }
